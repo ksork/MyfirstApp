@@ -19,10 +19,9 @@ public class AuthActivity extends AppCompatActivity {
 
     private void onClickBntEnter() {
         if (isLoginValid() && isPasswordValid()) {
-            Intent startProfileIntent =
-                    new Intent(AuthActivity.this, ProfileActivity.class);
-            startProfileIntent.putExtra(ProfileActivity.EMAIL_KEY, mLogin.getText().toString());
-            startProfileIntent.putExtra(ProfileActivity.PASSWORD_KEY, mPassword.getText().toString());
+            User user = new User(mLogin.getText().toString(), mPassword.getText().toString());
+            Intent startProfileIntent = new Intent(AuthActivity.this, ProfileActivity.class);
+            startProfileIntent.putExtra(ProfileActivity.USER_KEY, user);
             startActivity(startProfileIntent);
         } else {
             showMessage(R.string.login_input_error);
