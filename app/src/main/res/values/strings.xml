@@ -4,5 +4,6 @@
     <string name="password_hint">Password</string>
     <string name="login_enter">Enter</string>
     <string name="login_register">Register</string>
-    <string name="login_input_error">Wrong login or password</string>
+    <string name="login_input_error">Wrong login or password !</string>
+    <string name="e_mail">E-mail</string>
 </resources>

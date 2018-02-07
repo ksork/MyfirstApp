@@ -1,5 +1,6 @@
 package ru.inettel.ksork.myfirstapplication;
 
+import android.content.Intent;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,28 +17,32 @@ public class AuthActivity extends AppCompatActivity {
     private Button mEnter;
     private Button mRegister;
 
-    private void onClickBntEnter(){
+    private void onClickBntEnter() {
         if (isLoginValid() && isPasswordValid()) {
-            // Вход
+            Intent startProfileIntent =
+                    new Intent(AuthActivity.this, ProfileActivity.class);
+            startProfileIntent.putExtra(ProfileActivity.EMAIL_KEY, mLogin.getText().toString());
+            startProfileIntent.putExtra(ProfileActivity.PASSWORD_KEY, mPassword.getText().toString());
+            startActivity(startProfileIntent);
         } else {
             showMessage(R.string.login_input_error);
         }
     }
 
-    private void onClickBtnRegister(){
+    private void onClickBtnRegister() {
         // Регистрация
     }
 
-    private boolean isLoginValid(){
+    private boolean isLoginValid() {
         return !TextUtils.isEmpty(mLogin.getText())
                 && Patterns.EMAIL_ADDRESS.matcher(mLogin.getText()).matches();
     }
 
-    private boolean isPasswordValid(){
+    private boolean isPasswordValid() {
         return !TextUtils.isEmpty(mPassword.getText());
     }
 
-    private void showMessage(@StringRes int str){
+    private void showMessage(@StringRes int str) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
